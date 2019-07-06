@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { IProduct } from "./product";
-import { stringify } from "querystring";
 import { ProductService } from "./product.service";
 
 @Component({
@@ -35,8 +34,15 @@ export class ProductListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.products = this.productService.getProducts();
-        this.listFilter = "";
+        this.productService.getProducts().subscribe(
+            products =>{
+                this.products = products;
+                this.listFilter = "";
+            },
+            error => {
+                this.products = [];
+            }
+        );
     }
 
     filterProducts(listFilter: string): any {
