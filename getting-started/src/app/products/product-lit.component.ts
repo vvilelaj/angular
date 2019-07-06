@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { IProduct } from "./product";
+import { stringify } from "querystring";
 
 @Component({
     selector: "pm-products",
@@ -12,7 +13,18 @@ export class ProductListComponent implements OnInit {
     imageWidth: number = 50;
     imageMargin: number = 2;
     showImage: boolean = false;
-    listFilter: string = "";
+    //listFilter: string = "";
+    
+    private _listFilter : string;
+    public get listFilter() : string {
+        return this._listFilter;
+    }
+    public set listFilter(value : string) {
+        this._listFilter = value;
+        this.productsFiltered = value == "" ? this.products : this.filterProducts(this.listFilter);
+    }
+    
+    productsFiltered : IProduct[]
 
     products : IProduct[] = [
         {
@@ -37,11 +49,22 @@ export class ProductListComponent implements OnInit {
           }
     ];
 
+    constructor() {
+        //super();
+        this.listFilter = "";
+    }
     toggleImage() : void {
         this.showImage = !this.showImage;
     }
 
     ngOnInit(): void {
         console.log('OnInit');
+    }
+
+    filterProducts(listFilter: string): any {
+        listFilter = listFilter.toLocaleLowerCase();
+
+        return this.products.filter((prod : IProduct) =>
+            prod.productName.toLocaleLowerCase().indexOf(listFilter) !== -1);
     }
 }
