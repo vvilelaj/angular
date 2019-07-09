@@ -12,7 +12,7 @@ import { RoutingModule } from './routing.module';
     BrowserModule,
     HttpClientModule,
     ProductModule,
-    RoutingModule
+    RoutingModule,
   ],
   declarations: [
     AppComponent,
