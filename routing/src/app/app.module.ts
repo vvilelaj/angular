@@ -23,9 +23,11 @@ import { RouterModule } from '@angular/router';
     InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
     RouterModule.forRoot([
       { path: 'welcome', component: WelcomeComponent },
-      { path: '',   redirectTo: '/welcome', pathMatch: 'full' },
+      { path: '', redirectTo: '/welcome', pathMatch: 'full' },
       { path: '**', component: PageNotFoundComponent }
-    ]),
+    ], {
+        useHash: true
+      }),
     ProductModule,
     UserModule,
     MessageModule
