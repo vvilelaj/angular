@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Product } from './product';
 import { ProductService } from './product.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   templateUrl: './product-list.component.html',
@@ -26,11 +27,15 @@ export class ProductListComponent implements OnInit {
   filteredProducts: Product[] = [];
   products: Product[] = [];
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.listFilter = this.route.snapshot.queryParamMap.get('filterby') || '';
+    this.showImage =  (this.route.snapshot.queryParamMap.get('showImage') || '').toLocaleLowerCase() === 'true';
+
     this.productService.getProducts().subscribe(
       products => {
+
         this.products = products;
         this.filteredProducts = this.performFilter(this.listFilter);
       },
