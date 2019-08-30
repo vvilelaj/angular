@@ -48,7 +48,7 @@
             </td>
             <td>
               <a [routerLink]="['/products',product.id]"
-                  [queryParams]="{filterby : listFilter, showImage : showImage}">
+                 [queryParams]="{filterby : listFilter, showImage : showImage}">
                 {{ product.productName }}
               </a>
             </td>
@@ -61,6 +61,7 @@
             </td>
             <td>
               <button [routerLink]="['/products',product.id,'edit']"
+                      [queryParams]="{filterby : listFilter, showImage : showImage}"
                       class="btn btn-outline-primary btn-sm">
                 Edit
               </button>
