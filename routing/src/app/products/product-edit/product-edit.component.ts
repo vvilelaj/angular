@@ -16,25 +16,19 @@ export class ProductEditComponent implements OnInit {
 
   product: Product;
 
-  constructor(private productService: ProductService,
+  constructor(
+    private productService: ProductService,
     private messageService: MessageService,
     private route: ActivatedRoute,
-    private router: Router) {
-    this.route.paramMap.subscribe(params =>{
-      const id = +params.get('id');
-      this.getProduct(id);
-    });
-  }
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-  }
-
-  getProduct(id: number): void {
-    this.productService.getProduct(id)
-      .subscribe(
-        (product: Product) => this.onProductRetrieved(product),
-        (error: any) => this.errorMessage = <any>error
-      );
+    this.route.data.subscribe(data => {
+      const retrievedData = data['resolvedData'];
+      this.errorMessage = retrievedData.error;
+      this.onProductRetrieved(retrievedData.product);
+    });
   }
 
   onProductRetrieved(product: Product): void {
@@ -57,10 +51,12 @@ export class ProductEditComponent implements OnInit {
       this.onSaveComplete(`${this.product.productName} was deleted`);
     } else {
       if (confirm(`Really delete the product: ${this.product.productName}?`)) {
-        this.productService.deleteProduct(this.product.id)
+        this.productService
+          .deleteProduct(this.product.id)
           .subscribe(
-            () => this.onSaveComplete(`${this.product.productName} was deleted`),
-            (error: any) => this.errorMessage = <any>error
+            () =>
+              this.onSaveComplete(`${this.product.productName} was deleted`),
+            (error: any) => (this.errorMessage = <any>error)
           );
       }
     }
@@ -69,16 +65,24 @@ export class ProductEditComponent implements OnInit {
   saveProduct(): void {
     if (true === true) {
       if (this.product.id === 0) {
-        this.productService.createProduct(this.product)
+        this.productService
+          .createProduct(this.product)
           .subscribe(
-            () => this.onSaveComplete(`The new ${this.product.productName} was saved`),
-            (error: any) => this.errorMessage = <any>error
+            () =>
+              this.onSaveComplete(
+                `The new ${this.product.productName} was saved`
+              ),
+            (error: any) => (this.errorMessage = <any>error)
           );
       } else {
-        this.productService.updateProduct(this.product)
+        this.productService
+          .updateProduct(this.product)
           .subscribe(
-            () => this.onSaveComplete(`The updated ${this.product.productName} was saved`),
-            (error: any) => this.errorMessage = <any>error
+            () =>
+              this.onSaveComplete(
+                `The updated ${this.product.productName} was saved`
+              ),
+            (error: any) => (this.errorMessage = <any>error)
           );
       }
     } else {
