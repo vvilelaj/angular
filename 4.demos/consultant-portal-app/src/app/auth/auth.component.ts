@@ -2,13 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'cpa-auth',
-  template: '<router-outlet></router-outlet>',
+  templateUrl: './auth.component.html',
 })
-export class AuthComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class AuthComponent { }
