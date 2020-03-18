@@ -22,16 +22,14 @@ const routes: Routes = [
       import('./consultant/consultant.module').then(mod => mod.ConsultantModule),
   },
   {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin.module').then(mod => mod.AdminModule),
+  },
+  {
     path: '**',
     component: NotFoundComponent
   },
-
-  // {
-  //   path: 'admin',
-  //   loadChildren: () =>
-  //     import('./admin/admin.module').then(mod => mod.AdminModule),
-  // },
-
 ];
 
 @NgModule({

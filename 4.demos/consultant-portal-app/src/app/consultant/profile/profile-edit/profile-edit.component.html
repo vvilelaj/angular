@@ -1,1 +1,13 @@
-<p>profile-edit works!</p>
+<h2>Edit Profile</h2>
+<form [formGroup]="editProfile" novalidate autocomplete="off">
+  <div class="form-group">
+    <label for="names">Names</label>
+    <input formControlName="names" type="text" maxlength="50" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="lastname">Last Names</label>
+    <input formControlName="lastNames" type="text" maxlength="50" class="form-control">
+  </div>
+  <button [disabled]="!editProfile.valid" type="submit" class="btn btn-primary">Save</button><span>&nbsp;&nbsp;&nbsp;</span>
+  <button [routerLink]="['/consultant','profile','info']" type="button" class="btn btn-secondary">Cancel</button>
+</form>
