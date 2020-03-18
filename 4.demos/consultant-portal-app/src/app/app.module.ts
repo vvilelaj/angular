@@ -8,9 +8,7 @@ import { ConsultantModule } from './consultant/consultant.module';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
-import { AuthService } from './core/services/auth.service';
-import { IsAuthenticatedGuard } from './core/guards/auth/is-authenticated.guard';
-import { IsAdminGuard } from './core/guards/auth/is-admin.guard';
+import { AuthService, IsAuthenticatedGuard, IsAdminGuard, UserInfoService, LocalStorageService } from './core';
 
 @NgModule({
   declarations: [
@@ -26,9 +24,11 @@ import { IsAdminGuard } from './core/guards/auth/is-admin.guard';
     CoreModule,
   ],
   providers: [
+    LocalStorageService,
+    UserInfoService,
     AuthService,
     IsAuthenticatedGuard,
-    IsAdminGuard
+    IsAdminGuard,
   ],
   bootstrap: [AppComponent]
 })

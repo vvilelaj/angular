@@ -1,13 +1,23 @@
 <h2>Edit Profile</h2>
-<form [formGroup]="editProfile" novalidate autocomplete="off">
+<form [formGroup]="profileForm" (ngSubmit)="saveProfile()" novalidate autocomplete="off">
+  <div class="form-group">
+    <label for="userName">User Name</label>
+    <input formControlName="userName" readonly type="text" maxlength="50" class="form-control">
+  </div>
   <div class="form-group">
     <label for="names">Names</label>
     <input formControlName="names" type="text" maxlength="50" class="form-control">
+    <div *ngIf="names.touched && names.dirty && names.invalid" class="alert alert-danger" role="alert">
+      Requiered.
+    </div>
   </div>
   <div class="form-group">
     <label for="lastname">Last Names</label>
     <input formControlName="lastNames" type="text" maxlength="50" class="form-control">
+    <div *ngIf="lastNames.touched && lastNames.dirty && lastNames.invalid" class="alert alert-danger" role="alert">
+      Requiered.
+    </div>
   </div>
-  <button [disabled]="!editProfile.valid" type="submit" class="btn btn-primary">Save</button><span>&nbsp;&nbsp;&nbsp;</span>
+  <button [disabled]="!profileForm.valid" type="submit" class="btn btn-primary">Save</button><span>&nbsp;&nbsp;&nbsp;</span>
   <button [routerLink]="['/consultant','profile','info']" type="button" class="btn btn-secondary">Cancel</button>
 </form>
