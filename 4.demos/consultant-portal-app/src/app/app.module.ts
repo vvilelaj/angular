@@ -1,14 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app/app.component';
+import { AuthModule } from './auth';
 import { AdminModule } from './admin/admin.module';
-import { AuthModule } from './auth/auth.module';
-import { ConsultantModule } from './consultant/consultant.module';
-import { SharedModule } from './shared/shared.module';
+import { ConsultantModule } from './consultant';
+import { SharedModule } from './shared';
+import { CoreModule, LocalStorageService, UserInfoService, AuthService, IsAuthenticatedGuard, IsAdminGuard } from './core';
 import { AppRoutingModule } from './app-routing.module';
-import { CoreModule } from './core/core.module';
-import { AuthService, IsAuthenticatedGuard, IsAdminGuard, UserInfoService, LocalStorageService } from './core';
+
+
 
 @NgModule({
   declarations: [
@@ -20,8 +20,8 @@ import { AuthService, IsAuthenticatedGuard, IsAdminGuard, UserInfoService, Local
     AdminModule,
     ConsultantModule,
     SharedModule,
-    AppRoutingModule,
     CoreModule,
+    AppRoutingModule,
   ],
   providers: [
     LocalStorageService,

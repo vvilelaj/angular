@@ -1,11 +1,7 @@
 import { NgModule } from '@angular/core';
-
-import { AuthRoutingModule } from './auth-routing.module';
-import { AuthComponent } from './auth.component';
-import { LoginComponent } from './login/login.component';
-import { ForgetPasswordComponent } from './forget-password/forget-password.component';
-import { SharedModule } from '../shared/shared.module';
-
+import { AuthComponent, LoginComponent, ForgetPasswordComponent, AuthRoutingModule } from '.';
+import { SharedModule } from '../shared';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,6 +10,8 @@ import { SharedModule } from '../shared/shared.module';
     ForgetPasswordComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     SharedModule,
     AuthRoutingModule
   ]

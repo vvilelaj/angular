@@ -1,15 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { NotFoundComponent } from './shared/not-found/not-found.component';
-import { SharedModule } from './shared/shared.module';
+import { SharedModule, NotFoundComponent } from './shared';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'auth',
-    pathMatch: 'full'
-  },
   {
     path: 'auth',
     loadChildren: () =>
@@ -25,6 +18,11 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () =>
       import('./admin/admin.module').then(mod => mod.AdminModule),
+  },
+  {
+    path: '',
+    redirectTo: '/auth',
+    pathMatch: 'full'
   },
   {
     path: '**',

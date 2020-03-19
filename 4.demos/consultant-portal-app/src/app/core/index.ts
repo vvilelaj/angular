@@ -15,3 +15,6 @@ export * from './models/auth/user-identity';
 export * from './services/auth.service';
 export * from './services/local-storage.service';
 export * from './services/user-info.service';
+
+// Module
+export * from './core.module';
