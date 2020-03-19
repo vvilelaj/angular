@@ -4,12 +4,6 @@ import { SharedModule, NotFoundComponent } from './shared';
 
 const routes: Routes = [
   {
-    path: 'auth',
-    loadChildren: () =>
-      import('./auth/auth.module').then(mod => mod.AuthModule),
-    data: { preload: true }
-  },
-  {
     path: 'consultant',
     loadChildren: () =>
       import('./consultant/consultant.module').then(mod => mod.ConsultantModule),
@@ -21,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/auth',
+    redirectTo: 'auth',
     pathMatch: 'full'
   },
   {

@@ -1,12 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app/app.component';
-import { AuthModule } from './auth';
-import { AdminModule } from './admin/admin.module';
-import { ConsultantModule } from './consultant';
 import { SharedModule } from './shared';
 import { CoreModule, LocalStorageService, UserInfoService, AuthService, IsAuthenticatedGuard, IsAdminGuard } from './core';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthModule } from './auth';
 
 
 
@@ -16,11 +14,9 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   imports: [
     BrowserModule,
-    AuthModule,
-    AdminModule,
-    ConsultantModule,
     SharedModule,
     CoreModule,
+    AuthModule,
     AppRoutingModule,
   ],
   providers: [

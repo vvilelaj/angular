@@ -5,24 +5,27 @@ import { AuthComponent } from '.';
 import { LoginComponent } from '.';
 import { ForgetPasswordComponent } from '.';
 
-
-const routes: Routes = [{
-  path: 'auth',
-  component: AuthComponent,
-  children: [{
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
+const routes: Routes = [
   {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'forget-password',
-    component: ForgetPasswordComponent
-  }]
-}];
+    path: 'auth',
+    component: AuthComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
+      },
+      {
+        path: 'login',
+        component: LoginComponent
+      },
+      {
+        path: 'forget-password',
+        component: ForgetPasswordComponent
+      }
+    ]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

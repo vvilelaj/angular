@@ -6,32 +6,44 @@ import { ProfileInfoComponent } from './profile/profile-info/profile-info.compon
 import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
 import { IsAuthenticatedGuard } from '../core/guards/auth/is-authenticated.guard';
 
-const routes: Routes = [{
-  path: 'consultant',
-  component: ConsultantComponent,
-  canActivate: [
-    IsAuthenticatedGuard
-  ],
-  children: [{
+const routes: Routes = [
+  {
     path: '',
-    redirectTo: 'profile',
-    pathMatch: 'prefix'
-  }, {
-    path: 'profile',
-    data: {},
-    children: [{
-      path: '',
-      redirectTo: 'info',
-      pathMatch: 'prefix'
-    }, {
-      path: 'info',
-      component: ProfileInfoComponent
-    }, {
-      path: 'edit',
-      component: ProfileEditComponent
-    }]
-  }]
-}];
+    children: [
+      {
+        path: '',
+        component: ConsultantComponent,
+        canActivate: [
+          IsAuthenticatedGuard
+        ],
+        children:[
+          {
+            path: '',
+            redirectTo: 'profile',
+            pathMatch: 'full'
+          },
+          {
+            path: 'profile',
+            children: [{
+              path: '',
+              redirectTo: 'info',
+              pathMatch: 'full'
+            },
+            {
+              path: 'info',
+              component: ProfileInfoComponent
+            },
+            {
+              path: 'edit',
+              component: ProfileEditComponent
+            }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
