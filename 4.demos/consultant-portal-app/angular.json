@@ -126,6 +126,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "product-manager-app"
+    }
+  },
+  "defaultProject": "product-manager-app",
+  "cli": {
+    "analytics": false
+  }
 }
